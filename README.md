@@ -33,4 +33,5 @@ Parse an instruction, like the ones that are used in the 'adopt_data.txt' files.
 <br>
 
 # Developer info  
-Building the plugin can either be done by setting up a minecraft plugin development workspace for spigot 1.16, or by using the build file, I will be providing in a bit.  
+Building the plugin can either be done by setting up a minecraft plugin development workspace for spigot 1.16, or by using the build file.  
+It is a simple bash script. Before running, you will have to "chmod +x it" first, then you can run it by typing "./build.sh". It will download a spigot server jar, if not present, and compile everything into a file named "Adopt.jar".
