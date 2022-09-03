@@ -72,5 +72,28 @@ public class Main extends JavaPlugin{
 		return null;
 	
 	}
+
+	private static void start_debug() throws IOException {
+		Main.debug = true;
+		Main.debug_log = new File("adopt_debug.txt");
+		Main.debug_writer = new FileWriter(Main.debug_log, true);
+		Main.debug_buffered_writer = new BufferedWriter(Main.debug_writer);
+	}
+	
+	private static void stop_debug() throws IOException {
+		Main.debug_buffered_writer.close();
+		Main.debug_writer.close();
+	}
+	
+	public static void log(String text) {
+		if(Main.debug) {
+			try {
+				Main.debug_buffered_writer.write(text + "\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+				Bukkit.getServer().shutdown();
+			}
+		}
+	}
 	
 }
