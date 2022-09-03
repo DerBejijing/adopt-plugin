@@ -56,7 +56,6 @@ public class Main extends JavaPlugin{
 	public void onDisable() {
 		try {
 			data.close();
-			stop_debug();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
