@@ -12,6 +12,8 @@ public class Grownup {
 		this.name = name;
 		this.owner_1 = owner_1;
 		this.owner_2 = owner_2;
+		
+		Main.log("construct grownup: " + name + " " + owner_1 + " " + owner_2);
 	}
 	
 	public String getString() {

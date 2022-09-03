@@ -92,6 +92,8 @@ public class DataStorage {
 		
 		this.request_remove(owner_1);
 		
+		Main.log("child added: " + name);
+		
 		return true;
 	}
 	
@@ -182,6 +184,7 @@ public class DataStorage {
 	
 	public void grownup_add(String name) {
 		this.grownups.add(new Grownup(name, "?", "?"));
+		Main.log("grownup added: " + name);
 	}
 	
 	
@@ -225,6 +228,8 @@ public class DataStorage {
 			}		
 			
 		}
+		
+		Main.log("request accepted: " + player_from + " + " + player_to + " -> " + to_remove.player_to_adopt);
 		
 		this.requests.remove(to_remove);
 		
@@ -304,6 +309,7 @@ public class DataStorage {
 		
 		
 		for(Request r : this.requests) if(r.timeout_reached()) {
+			Main.log("request timeout: " + r.player_from + " + " + r.player_to + " " + r.player_to_adopt);
 			removeRequests.add(r);
 		}
 		
@@ -312,6 +318,8 @@ public class DataStorage {
 			String owner_1 = c.owner_1;
 			String owner_2 = c.owner_2;
 			removeChilds.add(c);
+			
+			Main.log("now grownup: " + name + " parrents (" + owner_1 + " " + owner_2 + ")");
 			
 			this.grownups.add(new Grownup(name, owner_1, owner_2));
 			this.parties.add(new GrownupParty(name));
@@ -334,6 +342,8 @@ public class DataStorage {
 		
 		for(GrownupParty g : this.parties) {
 			if(g.over()) {
+				
+				Main.log("party over: " + g.playername);
 				
 				removeParties.add(g);
 				for(GrownupTimerBossbar gb : this.bossbars) if(gb.playerName.equals(g.playername)) {
@@ -403,6 +413,8 @@ public class DataStorage {
 	
 	
 	public boolean data_parse(String instruction) {
+		Main.log("parse instruction: " + instruction);
+		
 		String unspaced = instruction.replace(" ", "");
 		int spaces = instruction.length() - unspaced.length();
 		String data[] = instruction.split(" ");
@@ -430,7 +442,9 @@ public class DataStorage {
 	
 	public void data_save() throws IOException {
 		System.out.println(ChatColor.GREEN + "saving all data");
-			
+		
+		Main.log("save all data");
+		
 		this.storage.delete();
 		this.storage.createNewFile();
 		this.storage_fw = new FileWriter(this.storage);
@@ -442,6 +456,8 @@ public class DataStorage {
 		for(GrownupTimerBossbar gb : this.bossbars) data_writeLine(gb.getString());
 		
 		this.storage_fw.close();
+		
+		Main.log("saved all data");
 		
 		System.out.println(ChatColor.GREEN + "saved all data");
 	}

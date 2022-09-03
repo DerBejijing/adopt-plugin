@@ -22,6 +22,8 @@ public class GrownupTimerBossbar {
 		this.barcolor = BarColor.RED;
 		this.bossbar = Bukkit.createBossBar(Main.getData().crp_getGrownupDateFormatted(playerName), this.barcolor, BarStyle.SOLID, BarFlag.DARKEN_SKY);
 		this.bossbar.setProgress(0);
+		
+		Main.log("construct bossbar: " + playername);
 	}
 	
 	
@@ -31,6 +33,7 @@ public class GrownupTimerBossbar {
 	
 	
 	public void enableBossbar() {
+		Main.log("bossbar enabled for: " + this.playerName);
 		Player player = Bukkit.getPlayer(this.playerName);
 		if(player == null) return;
 		this.bossbar.addPlayer(player);

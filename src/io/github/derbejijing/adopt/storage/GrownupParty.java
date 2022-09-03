@@ -32,6 +32,7 @@ public class GrownupParty {
 		this.event_delay = 500;
 		
 		Main.getData().bossbar_setTitle(playername, "YOU ARE NO LONGER PROPERTY!!");
+		Main.log("construct party: " + playername + " " + date_now.getTime() + " " + end.getTime());
 	}
 	
 	public void tick() {

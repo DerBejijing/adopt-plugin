@@ -30,7 +30,9 @@ public class ChildRaisePhase {
 		start = date_now.getTime();
 		end = grownup.getTime();
 		
-		this.date_time_grownup = Main.getData().sdf.format(calendar.getTime());		
+		this.date_time_grownup = Main.getData().sdf.format(calendar.getTime());
+		
+		Main.log("construct crp: " + child + " " + owner_1 + " " + owner_2 + " " + start + " " + end);
 	}
 	
 	
@@ -42,6 +44,8 @@ public class ChildRaisePhase {
 		this.end = Long.parseLong(end);
 		this.grownup = new Date(this.end);
 		this.date_time_grownup = Main.getData().sdf.format(this.grownup);
+		
+		Main.log("construct crp: " + child + " " + owner_1 + " " + owner_2 + " " + start + " " + end);
 	}
 	
 	

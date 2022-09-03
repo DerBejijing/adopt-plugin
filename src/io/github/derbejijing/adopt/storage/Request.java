@@ -23,6 +23,12 @@ public class Request {
 		calendar.setTime(date_now);
 		calendar.add(Calendar.MINUTE, 2);
 		this.date_time_invalid = Main.getData().sdf.format(calendar.getTime());
+		
+		try {
+			Main.log("construct request: " + player_from + " " + player_to + " " + player_to_adopt + " " + Main.getData().sdf.parse(this.date_time_invalid).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -31,6 +37,7 @@ public class Request {
 		this.player_to = player_to;
 		this.player_to_adopt = player_to_adopt;
 		this.date_time_invalid = Main.getData().sdf.format(new Date(Long.parseLong(time)));
+		Main.log("construct request: " + player_from + " " + player_to + " " + player_to_adopt + " " + time);
 	}
 	
 	
