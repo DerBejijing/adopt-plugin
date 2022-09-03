@@ -3,7 +3,7 @@
 set -e
 
 SRCDIR=./src
-PLUGIN_YML="${}/plugin.yml"
+PLUGIN_YML="${SRCDIR}/plugin.yml"
 JARFILE=Adopt.jar
 #MAIN=io.github.derbejijing.coordinatecracker.Main
 REPOSITORY=https://github.com/derbejijing/adopt-plugin
