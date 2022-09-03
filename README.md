@@ -1,6 +1,22 @@
 # adopt-plugin
 Very weird minecraft plugin - made-to-order
 
+<br>
+
+---
+
+<br>
+
+DEBUG VERSION!  
+USE MAIN BRANCH IF POSSIBLE!  
+
+
+<br>
+
+---
+
+<br>
+
 # About  
 If you do not know what this is, then this won't be relevant to you.  
 This is a minecraft plugin, I was requested to program.  
