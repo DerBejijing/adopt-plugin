@@ -13,6 +13,8 @@ public class AdoptAccept implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
+		Main.log("user " + sender.getName() + ": /adoptaccept " + String.join(" ", args));
+		
 		if(sender instanceof Player) {
 			Player player = (Player)sender;
 			
@@ -26,6 +28,8 @@ public class AdoptAccept implements CommandExecutor {
 			}
 			
 		}
+		
+		Main.log("adoptaccept command done");
 		
 		return false;
 	}

@@ -13,6 +13,8 @@ public class AdoptParse implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
+		Main.log("user " + sender.getName() + ": /adoptparse " + String.join(" ", args));
+		
 		boolean permission = false;
 		
 		if(sender instanceof Player) {
@@ -24,8 +26,14 @@ public class AdoptParse implements CommandExecutor {
 		if(permission) {
 			String instruction = String.join(" ", args);
 			
-			if(!Main.getData().data_parse(instruction)) sender.sendMessage(ChatColor.RED + "invalid instruction");			
+			if(!Main.getData().data_parse(instruction)) {
+				Main.log("invalid instruction");
+				sender.sendMessage(ChatColor.RED + "invalid instruction");
+			}
+			
 		}
+		
+		Main.log("adoptparse command done");
 		
 		return false;
 	}

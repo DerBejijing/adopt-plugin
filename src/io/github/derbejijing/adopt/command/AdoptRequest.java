@@ -19,6 +19,8 @@ public class AdoptRequest implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
+		Main.log("user " + sender.getName() + ": /adoptwith " + String.join(" ", args));
+		
 		if(sender instanceof Player) {
 			
 			Player player = (Player)sender;
@@ -37,23 +39,30 @@ public class AdoptRequest implements CommandExecutor {
 						switch(Main.getData().request_add(player.getName(), request_target.getName(), args[1])) {
 							case -1:
 								player.sendMessage(ChatColor.RED + "You cannot make multiple requests at the same time");
+								Main.log("request error -1");
 								break;
 							case -2:
 								player.sendMessage(ChatColor.RED + "Your target is already owned");
+								Main.log("request error -2");
 								break;
 							case -3:
 								player.sendMessage(ChatColor.RED + "You cannot adopt a grownup");
+								Main.log("request error -3");
 								break;
 							case -4:
 								player.sendMessage(ChatColor.RED + "Your request partner is underage you weirdo");
+								Main.log("request error -4");
 								break;
 							case -5:
 								player.sendMessage(ChatColor.RED + "That is a weird request");
+								Main.log("request error -5");
 								break;
 							case -6:
 								player.sendMessage(ChatColor.RED + "That request has already been made");
+								Main.log("request error -6");
 								break;
 							case 0:
+								Main.log("request ok");
 								player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
 								player.sendMessage(ChatColor.GRAY + "You requested " + ChatColor.GOLD + request_target.getName() + ChatColor.GRAY + " to adopt and raise " + ChatColor.GOLD + args[1]);
 								player.sendMessage(ChatColor.GRAY + "Be informed about what it means to adopt a player!");
@@ -78,19 +87,25 @@ public class AdoptRequest implements CommandExecutor {
 								request_target.sendMessage(ChatColor.GRAY + "Be informed about what it means to adopt a player!");
 								request_target.sendMessage(ChatColor.GRAY + "For more info type /adoptinfo");
 								request_target.spigot().sendMessage(accept_msg);
-								request_target.sendMessage(ChatColor.GREEN + "-----------------------------------------------");								
+								request_target.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
+								
+								Main.log("request sent");
+								
 						}
 						
 					}
 					
 				} else {
 					player.sendMessage(ChatColor.RED + "That player is not online");
+					Main.log("request player not online");
 				}
 				
 			} else this.help(player);
 			
 		}
-				
+		
+		Main.log("adoptwith command done");
+		
 		return false;
 	}
 	

@@ -14,6 +14,8 @@ public class AdoptDataSave implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
+		Main.log("user " + sender.getName() + ": /adoptsave " + String.join(" ", args));
+		
 		if(sender.isOp()) {
 			try {
 				Main.getData().data_save();
@@ -21,6 +23,8 @@ public class AdoptDataSave implements CommandExecutor {
 				e.printStackTrace();
 			}
 		} else sender.sendMessage(ChatColor.RED + "You do not have permission to run this command");
+		
+		Main.log("adoptsave command done");
 		
 		return false;
 	}

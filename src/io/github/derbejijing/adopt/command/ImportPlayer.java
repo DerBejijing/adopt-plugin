@@ -15,6 +15,8 @@ public class ImportPlayer implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
+		Main.log("user " + sender.getName() + ": /importplayer " + String.join(" ", args));
+		
 		boolean permission = false;
 		
 		if(sender instanceof Player) {
@@ -35,19 +37,25 @@ public class ImportPlayer implements CommandExecutor {
 				case "child":
 					if(!Main.getData().child_add(args[1])) {
 						sender.sendMessage(ChatColor.RED + "specified player is not wanted");
+						Main.log("importplayer child not wanted");
 						break;
 					}
 					Bukkit.dispatchCommand(console, "whitelist add " + args[1]);
 					break;
 				case "grownup":
 					Bukkit.dispatchCommand(console, "whitelist add " + args[1]);
+					Main.getData().grownup_add(args[1]);
 					break;
 				default:
 					sender.sendMessage(ChatColor.RED + "invalid option");
+					Main.log("importplayer invalid option");
 			}
 		} else {
 			sender.sendMessage(ChatColor.RED + "no permission");
+			Main.log("importplayer no permission");
 		}
+		
+		Main.log("importplayer command done");
 		
 		return false;
 	}

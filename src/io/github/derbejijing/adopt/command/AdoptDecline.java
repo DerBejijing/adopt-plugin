@@ -13,6 +13,8 @@ public class AdoptDecline implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
+		Main.log("user " + sender.getName() + ": /adoptdecline");
+		
 		if(sender instanceof Player) {
 			
 			Player player = (Player) sender;
@@ -27,6 +29,8 @@ public class AdoptDecline implements CommandExecutor {
 			}
 			
 		}
+		
+		Main.log("adoptdecline command done");
 		
 		return false;
 	}
