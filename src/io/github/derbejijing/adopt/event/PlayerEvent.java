@@ -16,16 +16,22 @@ public class PlayerEvent implements Listener {
 		Player player = event.getPlayer();
 		String name = player.getName();
 		
+		Main.log("player join " + name);
+		
 		if(Main.getData().playerIsBeingCelebrated(name)) {
 			Main.getData().bossbar_reenable(name);
+			Main.log("bossbar reenabled");
 		}
 			
 		if(Main.getData().playerIsProperty(name)) {
+			Main.log("player is property");
 			
 			if(Main.getData().playerIsBeingRaised(name)) {
 				Main.getData().bossbar_reenable(name);
+				Main.log("bossbar reenabled");
 			} else {
 				Main.getData().crp_add(name);
+				Main.log("first join, child raise phase added");
 			}
 			
 			player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
@@ -36,6 +42,8 @@ public class PlayerEvent implements Listener {
 				
 				
 		}
+		
+		Main.log("player join done");
 		
 	}
 	
