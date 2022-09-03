@@ -1,0 +1,16 @@
+name: adopt
+version: 1.0
+main: io.github.derbejijing.adopt.Main
+commands:
+  adoptwith:
+    description: send a request to a player to adopt another player
+  adoptaccept:
+    description: accept a request for adopting a player
+  adoptdecline:
+    description: decline a request for adopting a player
+  importplayer:
+    description: add a player to the server, setting a group
+  adoptsave:
+    description: saves all data
+  adoptparse:
+    description: parse an instruction manually
