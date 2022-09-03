@@ -21,6 +21,12 @@ public class Main extends JavaPlugin{
 	
 	private static DataStorage data;
 	
+	private static File debug_log;
+	private static FileWriter debug_writer;
+	private static BufferedWriter debug_buffered_writer;
+	private static boolean debug;
+	
+	
 	@Override
 	public void onEnable() {
 		try {
