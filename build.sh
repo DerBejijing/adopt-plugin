@@ -1,13 +1,13 @@
 #!/bin/bash
 
-set -e
-
 SRCDIR=./src
-PLUGIN_YML="${SRCDIR}/plugin.yml"
-JARFILE=Adopt.jar
-#MAIN=io.github.derbejijing.coordinatecracker.Main
+PLUGIN_YML="plugin.yml"
+JARFILE=Adopt
 REPOSITORY=https://github.com/derbejijing/adopt-plugin
+SERVER_JAR_DOWNLOAD="https://cdn.getbukkit.org/spigot/spigot-1.16.4.jar"
+MAIN=io.github.derbejijing.adopt.Main
 
+CLASSPATH_JAR="server.jar"
 MAINPATH=$(echo $MAIN | tr "." "/")
 MAINPATH="${MAINPATH}.class"
 
@@ -16,13 +16,14 @@ COLOR_LIGHT_BLUE='\033[1;34m'
 COLOR_YELLOW='\033[1;33m'
 COLOR_RESET='\033[0m'
 
+curl $SERVER_JAR_DOWNLOAD -o $CLASSPATH_JAR
 
 cd $SRCDIR
 
 find . -name "*.java" > sources.txt
 
 echo -e "${COLOR_YELLOW}Compiling classes..."
-javac -cp server.jar @sources.txt
+javac -cp ../${CLASSPATH_JAR} @sources.txt
 echo -e "${COLOR_GREEN}Done compiling!${COLOR_RESET}"
 
 
