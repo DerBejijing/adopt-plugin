@@ -80,12 +80,22 @@ public class Main extends JavaPlugin{
 	}
 
 	private static void startImportPlayerLog() {
-		Main.importedPlayers = new File("adopt_import.txt");
-		Main.importedPlayersFw = new FileWriter(Main.importedPlayers);
+		try {
+			Main.importedPlayers = new File("adopt_import.txt");
+			Main.importedPlayersFw = new FileWriter(Main.importedPlayers);
+		catch(IOException e) {
+			e.printStackTrace();
+			Bukkit.getServer().shutdown();
+		}
 	}
 
 	private static void stopImportPlayerLog() {
-		Main.importedPlayersFw.close();
+		try {
+			Main.importedPlayersFw.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+			Bukkit.getServer().shutdown();
+		}
 	}
 
 	public static void logImportPlayer(String name) {
