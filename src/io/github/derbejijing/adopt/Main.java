@@ -14,6 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import io.github.derbejijing.adopt.command.AdoptAccept;
 import io.github.derbejijing.adopt.command.AdoptDataSave;
 import io.github.derbejijing.adopt.command.AdoptDecline;
+import io.github.derbejijing.adopt.command.AdoptInfo;
 import io.github.derbejijing.adopt.command.AdoptParse;
 import io.github.derbejijing.adopt.command.AdoptRequest;
 import io.github.derbejijing.adopt.command.ImportPlayer;
@@ -39,7 +40,8 @@ public class Main extends JavaPlugin{
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
 		}
-			
+		
+		this.getCommand("adoptinfo").setExecutor(new AdoptInfo());
 		this.getCommand("adoptwith").setExecutor(new AdoptRequest());
 		this.getCommand("adoptaccept").setExecutor(new AdoptAccept());
 		this.getCommand("adoptdecline").setExecutor(new AdoptDecline());
