@@ -26,7 +26,6 @@ public class Main extends JavaPlugin{
 	private static DataStorage data;
 	
 	private static File importedPlayers;
-	//private static FileWriter importedPlayersFw;
 
 	@Override
 	public void onEnable() {

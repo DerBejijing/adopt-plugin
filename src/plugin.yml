@@ -2,6 +2,8 @@ name: adopt
 version: 1.0
 main: io.github.derbejijing.adopt.Main
 commands:
+  adoptinfo:
+    description: get help
   adoptwith:
     description: send a request to a player to adopt another player
   adoptaccept:
