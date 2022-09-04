@@ -92,8 +92,8 @@ public class Main extends JavaPlugin{
 
 	public static void logImportPlayer(String name) {
 		try {
-			FileWriter importedPlayersFw = new FileWriter(Main.importedPlayers);
-			BufferedWriter importedPlayersBw = new BufferedWriter(importedPlayersFw, true);
+			FileWriter importedPlayersFw = new FileWriter(Main.importedPlayers, true);
+			BufferedWriter importedPlayersBw = new BufferedWriter(importedPlayersFw);
 			importedPlayersBw.write(name + "\n");
 			importedPlayersBw.close();
 			importedPlayersFw.close();
