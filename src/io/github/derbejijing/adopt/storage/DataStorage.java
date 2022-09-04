@@ -235,7 +235,8 @@ public class DataStorage {
 		this.requests.remove(to_remove);
 		
 		Player from = Bukkit.getPlayer(player_from);
-		from.sendMessage(ChatColor.GOLD + player_to + ChatColor.GRAY + " accepted your request!");
+		if(from != null) from.sendMessage(ChatColor.GOLD + player_to + ChatColor.GRAY + " accepted your request!");
+		
 		this.contracts.add(new Contract(player_to_adopt, player_from, player_to));
 		Main.logImportPlayer(player_to_adopt);
 	}
@@ -283,9 +284,7 @@ public class DataStorage {
 		this.requests.remove(to_remove);
 		
 		Player from = Bukkit.getPlayer(player_from);
-		if(from == null) return;
-		
-		from.sendMessage(ChatColor.GOLD + player_to + ChatColor.RED + " declined your request!");
+		if(from != null) from.sendMessage(ChatColor.GOLD + player_to + ChatColor.RED + " declined your request!");
 	}
 	
 	public boolean request_exists(String player_from, String player_to) {
