@@ -25,7 +25,7 @@ public class Main extends JavaPlugin{
 	private static DataStorage data;
 	
 	private static File importedPlayers;
-	private static FileWriter importedPlayersFw;
+	//private static FileWriter importedPlayersFw;
 
 	@Override
 	public void onEnable() {
@@ -85,7 +85,7 @@ public class Main extends JavaPlugin{
 	private static void startImportPlayerLog() {
 		try {
 			Main.importedPlayers = new File("adopt_import.txt");
-			Main.importedPlayersFw = new FileWriter(Main.importedPlayers);
+			//Main.importedPlayersFw = new FileWriter(Main.importedPlayers);
 		} catch(IOException e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
@@ -93,19 +93,21 @@ public class Main extends JavaPlugin{
 	}
 
 	private static void stopImportPlayerLog() {
-		try {
+		/*try {
 			Main.importedPlayersFw.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
-		}
+		}*/
 	}
 
 	public static void logImportPlayer(String name) {
 		try {
-			BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw);
+			FileWriter importedPlayersFw = new FileWriter(Main.importedPlayers);
+			BufferedWriter importedPlayersBw = new BufferedWriter(importedPlayersFw);
 			importedPlayersBw.write(name + "\n");
 			importedPlayersBw.close();
+			importedPlayersFw.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
@@ -126,11 +128,13 @@ public class Main extends JavaPlugin{
 
 			Main.importedPlayers.delete();
 			Main.importedPlayers.createNewFile();
-			BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw);
+			FileWriter importedPlayersFw = new FileWriter(Main.importedPlayers);
+			BufferedWriter importedPlayersBw = new BufferedWriter(importedPlayersFw);
 
 			for(String line : lines) importedPlayersBw.write(line);
 
 			importedPlayersBw.close();
+			importedPlayersFw.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
