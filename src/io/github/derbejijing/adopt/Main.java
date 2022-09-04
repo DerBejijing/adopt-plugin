@@ -113,7 +113,7 @@ public class Main extends JavaPlugin{
 			for(String line : lines) importedPlayersBw.write(line);
 
 			importedPlayersBw.close();
-		} catch(Exception e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
 		}
