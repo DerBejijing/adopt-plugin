@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.StandardOpenOption;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -95,21 +95,28 @@ public class Main extends JavaPlugin{
 	}
 
 	public static void removeImportPlayerLog(String name) {
-		Scanner read = new Scanner(Main.importedPlayers);
-		ArrayList<String> lines = new ArrayList<String>();
+		try {
+			Scanner read = new Scanner(Main.importedPlayers);
+			ArrayList<String> lines = new ArrayList<String>();
 
-		while(read.hasNextLine()) {
-			String line = read.nextLine();
-			if(!line.replace("\r","").replace("\n","").equals(name)) lines.add(line);
+			while(read.hasNextLine()) {
+				String line = read.nextLine();
+				if(!line.replace("\r","").replace("\n","").equals(name)) lines.add(line);
+			}
+
+			read.close();
+
+			Main.importedPlayers.delete();
+			Main.importedPlayers.createNewFile();
+			BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw);
+
+			for(String line : lines) importedPlayersBw.write(line);
+
+			importedPlayersBw.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			Bukkit.getServer().shutdown();
 		}
-
-		read.close();
-
-		BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw, StandardOpenOption.TRUNCATE_EXISTING);
-
-		for(String line : lines) importedPlayersBw.write(line);
-
-		importedPlayersBw.close();
 	}
 	
 }
