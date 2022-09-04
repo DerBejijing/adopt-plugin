@@ -336,8 +336,7 @@ public class DataStorage {
 		} else {
 			Player player = Bukkit.getPlayer(c.name);
 			if(player != null) {
-				player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 2, 1));
-				player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 20 * 2, 1));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 2, 0));
 			}
 		}
 		
