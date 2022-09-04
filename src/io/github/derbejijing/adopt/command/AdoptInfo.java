@@ -26,7 +26,7 @@ public class AdoptInfo implements CommandExecutor {
             player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
             player.spigot().sendMessage(url);
             player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
-        } else sender.sendMessage(url_string)
+        } else sender.sendMessage(url_string);
 
 		return false;
 	}

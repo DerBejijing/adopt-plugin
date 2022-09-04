@@ -257,7 +257,7 @@ public class DataStorage {
 			if(c.name.equals(player_request_from)) return -7;
 		}
 
-		for(ChildRaisePhase crp : this.raise_phases) if(crp.name.equals(player_from)) return -7;
+		for(ChildRaisePhase crp : this.raise_phases) if(crp.name.equals(player_request_from)) return -7;
 		
 		for(Grownup g : this.grownups) {
 			// target is already a grownup
