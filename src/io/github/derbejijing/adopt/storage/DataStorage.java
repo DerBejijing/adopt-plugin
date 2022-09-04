@@ -237,6 +237,7 @@ public class DataStorage {
 		Player from = Bukkit.getPlayer(player_from);
 		from.sendMessage(ChatColor.GOLD + player_to + ChatColor.GRAY + " accepted your request!");
 		this.contracts.add(new Contract(player_to_adopt, player_from, player_to));
+		Main.logImportPlayer(player_to_adopt);
 	}
 	
 	public int request_add(String player_request_from, String player_request_to, String adopt_target) {

@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +24,9 @@ public class Main extends JavaPlugin{
 	
 	private static DataStorage data;
 	
+	private static File importedPlayers;
+	private static FileWriter importedPlayersFw;
+
 	@Override
 	public void onEnable() {
 		try {
@@ -71,6 +77,39 @@ public class Main extends JavaPlugin{
 		}
 		return null;
 	
+	}
+
+	private static void startImportPlayerLog() {
+		Main.importedPlayers = new File("adopt_import.txt");
+		Main.importedPlayersFw = new FileWriter(Main.importedPlayers);
+	}
+
+	private static void stopImportPlayerLog() {
+		Main.importedPlayersFw.close();
+	}
+
+	public static void logImportPlayer(String name) {
+		BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw);
+		importedPlayersBw.write(name + "\n");
+		importedPlayersBw.close();
+	}
+
+	public static void removeImportPlayerLog(String name) {
+		Scanner read = new Scanner(Main.importedPlayers);
+		ArrayList<String> lines = new ArrayList<String>();
+
+		while(read.hasNextLine()) {
+			String line = read.nextLine();
+			if(!line.replace("\r","").replace("\n","").equals(name)) lines.add(line);
+		}
+
+		read.close();
+
+		BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw, StandardOpenOption.TRUNCATE_EXISTING);
+
+		for(String line : lines) importedPlayersBw.write(line);
+
+		importedPlayersBw.close();
 	}
 	
 }

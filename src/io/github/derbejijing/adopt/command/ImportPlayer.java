@@ -38,6 +38,7 @@ public class ImportPlayer implements CommandExecutor {
 						break;
 					}
 					Bukkit.dispatchCommand(console, "whitelist add " + args[1]);
+					Main.removeImportPlayerLog(args[1]);
 					break;
 				case "grownup":
 					Bukkit.dispatchCommand(console, "whitelist add " + args[1]);
