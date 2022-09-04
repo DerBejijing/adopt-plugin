@@ -32,6 +32,7 @@ public class AdoptRequest implements CommandExecutor {
 					if(player.getName() == args[1]) player.sendMessage(ChatColor.RED + "You cannot adopt yourself");
 					else if(request_target.getName() == args[1]) player.sendMessage(ChatColor.RED + "Players cannot adopt themselves");
 					else if(player == request_target) player.sendMessage(ChatColor.RED + "You cannot adopt a player alone :(");
+					else if(Main.getData().playerIsRaisingChild(player.getName())) player.sendMessage(ChatColor.RED + "You are already raising a child");
 					else {
 					
 						switch(Main.getData().request_add(player.getName(), request_target.getName(), args[1])) {

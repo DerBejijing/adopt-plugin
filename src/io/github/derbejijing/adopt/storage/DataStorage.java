@@ -211,6 +211,12 @@ public class DataStorage {
 		for(Contract c : this.contracts) if(c.name.equals(name)) return true;
 		return false;
 	}
+
+	public boolean playerIsRaisingChild(String name) {
+		for(Contract c : this.contracts) if(c.owner_1.equals(name) || c.owner_2.equals(name)) return true;
+		for(ChildRaisePhase crp : this.raise_phases) if(crp.owner_1.equals(name) || crp.owner_2.equals(name)) return true;
+		return false;
+	}
 	
 	public void request_accept(String player_from, String player_to) {	
 		String player_to_adopt = "";

@@ -24,7 +24,7 @@ public class ChildRaisePhase {
 		Date date_now = new Date();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date_now);
-		calendar.add(Calendar.DATE, 5);
+		calendar.add(Calendar.DATE, 3);
 		grownup = calendar.getTime();
 		
 		start = date_now.getTime();
