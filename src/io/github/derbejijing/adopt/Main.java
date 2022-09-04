@@ -29,6 +29,8 @@ public class Main extends JavaPlugin{
 
 	@Override
 	public void onEnable() {
+		startImportPlayerLog();
+		
 		try {
 			data = new DataStorage("adopt_data.txt");
 			data.data_load();
@@ -62,6 +64,7 @@ public class Main extends JavaPlugin{
 	public void onDisable() {
 		try {
 			data.close();
+			stopImportPlayerLog();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +86,7 @@ public class Main extends JavaPlugin{
 		try {
 			Main.importedPlayers = new File("adopt_import.txt");
 			Main.importedPlayersFw = new FileWriter(Main.importedPlayers);
-		catch(IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
 		}
@@ -99,9 +102,14 @@ public class Main extends JavaPlugin{
 	}
 
 	public static void logImportPlayer(String name) {
-		BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw);
-		importedPlayersBw.write(name + "\n");
-		importedPlayersBw.close();
+		try {
+			BufferedWriter importedPlayersBw = new BufferedWriter(Main.importedPlayersFw);
+			importedPlayersBw.write(name + "\n");
+			importedPlayersBw.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+			Bukkit.getServer().shutdown();
+		}
 	}
 
 	public static void removeImportPlayerLog(String name) {
