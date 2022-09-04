@@ -333,8 +333,8 @@ public class DataStorage {
 		} else {
 			Player player = Bukkit.getPlayer(c.name);
 			if(player != null) {
-				player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20, 1));
-				player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 20, 1));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 2, 1));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 20 * 2, 1));
 			}
 		}
 		
@@ -369,37 +369,7 @@ public class DataStorage {
 		
 		while(this.storage_fr.hasNextLine()) {
 			String line = this.storage_fr.nextLine();
-			
 			this.data_parse(line);
-			
-			/*
-			String unspaced = line.replace(" ", "");
-			int spaces = line.length() - unspaced.length();
-			
-			String[] data = line.split(" ");
-			
-			System.out.println(line);
-			
-			if(line.startsWith("RAISE") && spaces == 5) {
-				this.raise_phases.add(new ChildRaisePhase(data[1], data[2], data[3], data[4], data[5]));
-			}
-			
-			if(line.startsWith("CONTRACT") && spaces == 3) {
-				this.contracts.add(new Contract(data[1], data[2], data[3]));
-			}
-			
-			if(line.startsWith("GROWNUP") && spaces == 3) {
-				this.grownups.add(new Grownup(data[1], data[2], data[3]));
-			}
-			
-			if(line.startsWith("BOSSBAR") && spaces == 1) {
-				this.bossbars.add(new GrownupTimerBossbar(data[1]));
-			}
-			
-			if(line.startsWith("REQUEST") && spaces == 4) {
-				this.requests.add(new Request(data[1], data[2], data[3], data[4])); 
-			}
-			*/
 		}
 		
 		this.storage_fr.close();
