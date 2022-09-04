@@ -31,7 +31,6 @@ public class DataStorage {
 	private ArrayList<GrownupParty> parties;
 	
 	public SimpleDateFormat sdf;
-	public SimpleDateFormat bossbarSdf;
 	
 	public DataStorage(String filename) throws IOException {
 		
@@ -43,7 +42,6 @@ public class DataStorage {
 		this.parties = new ArrayList<GrownupParty>();
 		
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		this.bossbarSdf = new SimpleDateFormat("dd HH:mm:ss");
 		
 		this.storage = new File(filename);
 		
@@ -128,7 +126,7 @@ public class DataStorage {
 	
 	
 	public String crp_getGrownupDateFormatted(String name) {
-		for(ChildRaisePhase c : this.raise_phases) if(c.name.equals(name)) return this.bossbarSdf.format(c.getGrownupDate());
+		for(ChildRaisePhase c : this.raise_phases) if(c.name.equals(name)) return this.sdf.format(c.getGrownupDate());
 		return "";
 	}
 	
