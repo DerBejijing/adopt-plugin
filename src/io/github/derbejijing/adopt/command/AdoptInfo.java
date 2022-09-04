@@ -15,16 +15,18 @@ public class AdoptInfo implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
+        String url_string = "https://github.com/DerBejijing/adopt-plugin";
+
         if(sender instanceof Player) {
     		Player player = (Player)sender;
 
-            TextComponent url = new TextComponent(ChatColor.GRAY + "https://github.com/DerBejijing/adopt-plugin");
-            url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/DerBejijing/adopt-plugin"));
+            TextComponent url = new TextComponent(ChatColor.GRAY + url_string);
+            url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url_string));
 
             player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
             player.spigot().sendMessage(url);
             player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
-        } 
+        } else sender.sendMessage(url_string)
 
 		return false;
 	}
