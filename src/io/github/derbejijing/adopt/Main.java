@@ -83,28 +83,17 @@ public class Main extends JavaPlugin{
 	}
 
 	private static void startImportPlayerLog() {
-		try {
-			Main.importedPlayers = new File("adopt_import.txt");
-			//Main.importedPlayersFw = new FileWriter(Main.importedPlayers);
-		} catch(IOException e) {
-			e.printStackTrace();
-			Bukkit.getServer().shutdown();
-		}
+		Main.importedPlayers = new File("adopt_import.txt");
 	}
 
 	private static void stopImportPlayerLog() {
-		/*try {
-			Main.importedPlayersFw.close();
-		} catch(IOException e) {
-			e.printStackTrace();
-			Bukkit.getServer().shutdown();
-		}*/
+		return;
 	}
 
 	public static void logImportPlayer(String name) {
 		try {
 			FileWriter importedPlayersFw = new FileWriter(Main.importedPlayers);
-			BufferedWriter importedPlayersBw = new BufferedWriter(importedPlayersFw);
+			BufferedWriter importedPlayersBw = new BufferedWriter(importedPlayersFw, true);
 			importedPlayersBw.write(name + "\n");
 			importedPlayersBw.close();
 			importedPlayersFw.close();
@@ -131,7 +120,7 @@ public class Main extends JavaPlugin{
 			FileWriter importedPlayersFw = new FileWriter(Main.importedPlayers);
 			BufferedWriter importedPlayersBw = new BufferedWriter(importedPlayersFw);
 
-			for(String line : lines) importedPlayersBw.write(line);
+			for(String line : lines) importedPlayersBw.write(line + "\n");
 
 			importedPlayersBw.close();
 			importedPlayersFw.close();
