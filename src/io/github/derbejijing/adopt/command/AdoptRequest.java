@@ -54,6 +54,9 @@ public class AdoptRequest implements CommandExecutor {
 							case -6:
 								player.sendMessage(ChatColor.RED + "That request has already been made");
 								break;
+							case -7:
+								player.sendMessage(ChatColor.RED + "You are underage");
+								break;
 							case 0:
 								player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
 								player.sendMessage(ChatColor.GRAY + "You requested " + ChatColor.GOLD + request_target.getName() + ChatColor.GRAY + " to adopt and raise " + ChatColor.GOLD + args[1]);

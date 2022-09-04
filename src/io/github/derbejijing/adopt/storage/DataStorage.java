@@ -243,7 +243,7 @@ public class DataStorage {
 	
 	public int request_add(String player_request_from, String player_request_to, String adopt_target) {
 		
-		boolean request_target_grownup = false;
+		//boolean request_target_grownup = false;
 		
 		for(Request r : this.requests) {
 			// cannot make multiple requests at the same time
@@ -254,15 +254,18 @@ public class DataStorage {
 		for(Contract c : this.contracts) {
 			// someone has already adopted the target
 			if(c.name.equals(adopt_target)) return -2;
+			if(c.name.equals(player_request_from)) return -7;
 		}
+
+		for(ChildRaisePhase crp : this.raise_phases) if(crp.name.equals(player_from)) return -7;
 		
 		for(Grownup g : this.grownups) {
 			// target is already a grownup
 			if(g.name.equals(adopt_target)) return -3;
-			if(g.name.equals(player_request_to)) request_target_grownup = true;
+			if(g.name.equals(player_request_to)) return -4;
 		}
 		
-		if(request_target_grownup == false) return -4;
+		//if(request_target_grownup == false) return -4;
 		if(player_request_from == player_request_to || player_request_to == adopt_target || player_request_from == adopt_target) return -5;
 		
 		this.requests.add(new Request(player_request_from, player_request_to, adopt_target));
