@@ -47,7 +47,7 @@ public class DataStorage {
 		
 		if(!this.storage.exists()) {
 			this.storage.createNewFile();
-			System.out.println("Data storage created");
+			Bukkit.getLogger().info("Data storage created");
 		}
 		
 	}
@@ -105,7 +105,7 @@ public class DataStorage {
 		Contract contract = null;
 		for(Contract c : this.contracts) if(c.name.equals(name)) contract = c;
 		if(contract == null) {
-			System.out.println("addChiltRaisePhase failed");
+			Bukkit.getLogger().warning("addChiltRaisePhase failed");
 			return;
 		}
 		
@@ -289,8 +289,6 @@ public class DataStorage {
 	}
 	
 	public boolean request_exists(String player_from, String player_to) {
-		for(Request r : this.requests) System.out.println(r.player_from + " " + r.player_to);
-		
 		for(Request r : this.requests) if(r.player_from.equals(player_from) && r.player_to.equals(player_to)) return true;
 		return false;
 	}
@@ -363,7 +361,7 @@ public class DataStorage {
 	
 	
 	public void data_load() throws FileNotFoundException {
-		System.out.println(ChatColor.GREEN + "loading data from file");
+		Bukkit.getLogger().info("loading data from file");
 		
 		this.storage_fr = new Scanner(this.storage);
 		
@@ -374,7 +372,7 @@ public class DataStorage {
 		
 		this.storage_fr.close();
 		
-		System.out.println(ChatColor.GREEN + "loaded all data");
+		Bukkit.getLogger().info("loaded data from file");
 	}
 	
 	
@@ -405,8 +403,8 @@ public class DataStorage {
 	
 	
 	public void data_save() throws IOException {
-		System.out.println(ChatColor.GREEN + "saving all data");
-			
+		Bukkit.getLogger().info("saving all data");
+		
 		this.storage.delete();
 		this.storage.createNewFile();
 		this.storage_fw = new FileWriter(this.storage);
@@ -419,7 +417,7 @@ public class DataStorage {
 		
 		this.storage_fw.close();
 		
-		System.out.println(ChatColor.GREEN + "saved all data");
+		Bukkit.getLogger().info("saved all data");
 	}
 	
 	
