@@ -4,20 +4,52 @@ SRCDIR=./src
 PLUGIN_YML="plugin.yml"
 JARFILE=Adopt
 REPOSITORY=https://github.com/derbejijing/adopt-plugin
-SERVER_JAR_DOWNLOAD="https://cdn.getbukkit.org/spigot/spigot-1.16.4.jar"
+BUILD_TOOLS_DOWNLOAD="https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
 MAIN=io.github.derbejijing.adopt.Main
 
-CLASSPATH_JAR="server.jar"
+CLASSPATH_JAR="spigot-api.jar"
 MAINPATH=$(echo $MAIN | tr "." "/")
 MAINPATH="${MAINPATH}.class"
 
+COLOR_RED='\033[0;31m'
 COLOR_GREEN='\033[0;32m'
-COLOR_LIGHT_BLUE='\033[1;34m'
 COLOR_YELLOW='\033[1;33m'
+COLOR_LIGHT_BLUE='\033[1;34m'
 COLOR_RESET='\033[0m'
 
+if [[ -n $1 ]]; then
+	if [[ $1 = "--setup-env" ]]; then
+		
+		if ! [[ -d "build-api-dir" ]]; then
+			mkdir "build-api-dir"
+			cd "build-api-dir"
+		else
+			cd "build-api-dir"
+		fi
+
+		if ! [[ -f "BuildTools.jar" ]]; then
+			echo -e "${COLOR_GREEN}Starting download of BuildTools.jar...${COLOR_RESET}"
+			curl -s $BUILD_TOOLS_DOWNLOAD -O
+			echo -e "${COLOR_GREEN}Done!${COLOR_RESET}"
+		fi
+		
+		echo -e "${COLOR_GREEN}Running build tools... this might take some time${COLOR_RESET}"
+		java -jar "BuildTools.jar"
+		
+		files=$(find Spigot/Spigot-API/target -name "*-SNAPSHOT-shaded.jar")
+		cp ${files[0]} ../${CLASSPATH_JAR}
+
+		cd ..
+		echo -e "${COLOR_GREEN}API setup done!${COLOR_RESET}"
+	fi
+fi 
+
 if ! [[ -f "$CLASSPATH_JAR" ]]; then
-	curl $SERVER_JAR_DOWNLOAD -o $CLASSPATH_JAR
+	echo -e "${COLOR_RED}The spigot api could not be found!"
+	echo -e "${COLOR_RED}Run with ${COLOR_RESET}--setup-env${COLOR_RED} or"
+	echo -e "${COLOR_RED}Follow the instructions on${COLOR_RESET} https://www.spigotmc.org/wiki/buildtools/ ${COLOR_RED}, to generate the api jar!"
+	echo -e "${COLOR_RED}Save the shaded api jar as ${COLOR_RESET}${CLASSPATH_JAR}"
+	exit
 fi
 
 cd $SRCDIR

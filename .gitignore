@@ -1,2 +1,5 @@
 .vscode/
-spigot-1.16.4.jar
+.DS_Store
+build-api-dir/
+spigot-api.jar
+Adopt.jar
