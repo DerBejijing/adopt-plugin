@@ -34,8 +34,10 @@ if [[ -n $1 ]]; then
 		fi
 		
 		echo -e "${COLOR_GREEN}Running build tools... this might take some time${COLOR_RESET}"
-		java -jar "BuildTools.jar"
+		java -jar "BuildTools.jar" --rev
 		
+		if ! [[ $? -eq 0 ]]; then exit; fi
+
 		files=$(find Spigot/Spigot-API/target -name "*-SNAPSHOT-shaded.jar")
 		cp ${files[0]} ../${CLASSPATH_JAR}
 
