@@ -1,5 +1,6 @@
 package io.github.derbejijing.adopt.event;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,6 +27,14 @@ public class PlayerEvent implements Listener {
 				Main.getData().bossbar_reenable(name);
 			} else {
 				Main.getData().crp_add(name);
+
+				Player owner = Bukkit.getPlayer(Main.getData().getParrent_1(name));
+				if(owner != null) player.teleport(owner);
+				else {
+					owner = Bukkit.getPlayer(Main.getData().getParrent_2(name));
+					if(owner != null) player.teleport(owner);
+				}
+
 			}
 			
 			player.sendMessage(ChatColor.GREEN + "-----------------------------------------------");
