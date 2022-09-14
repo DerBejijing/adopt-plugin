@@ -1,7 +1,5 @@
 package io.github.derbejijing.adopt.storage;
 
-import io.github.derbejijing.adopt.Main;
-
 public class Grownup {
 
 	String name;
