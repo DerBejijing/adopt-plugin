@@ -34,7 +34,7 @@ if [[ -n $1 ]]; then
 		fi
 		
 		echo -e "${COLOR_GREEN}Running build tools... this might take some time${COLOR_RESET}"
-		java -jar "BuildTools.jar" --rev
+		java -jar "BuildTools.jar"
 		
 		if ! [[ $? -eq 0 ]]; then exit; fi
 
