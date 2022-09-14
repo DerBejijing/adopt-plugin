@@ -34,7 +34,7 @@ Parse an instruction, like the ones that are used in the 'adopt_data.txt' files.
 
 # Developer info  
 Building the plugin can either be done by setting up a minecraft plugin development workspace for spigot 1.16, or by using the build file.  
-To build it using the build.sh file, you will need the spigot-API for minecraft 1.19. You can either obtain it manually by running the [Buildtools]() by Spigot, naming the API spigot-api.jar and putting it in the project's root (From my experience only the shaded version works).  
+To build it using the build.sh file, you will need the spigot-API for minecraft 1.19. You can either obtain it manually by running the [Buildtools](https://www.spigotmc.org/wiki/buildtools/) by Spigot, naming the API spigot-api.jar and putting it in the project's root (From my experience only the shaded version works).  
 You can also run the build file with "--setup-env" and it will automatically install the BuildTools (if not present) and build the latest version of the API.  
 Note that you may need to temporarily switch your Java version!  
 
